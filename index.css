@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Rufing';
+    src: url('assets/VOLARE FREE.ttf');
+}
+
+.root {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 9 / 16 * 100% */ /* Esto mantiene la relacion de aspecto 16:9*/
+    background-image: url('assets/background_cover.png');
+    background-size:cover;
+}
+
+.info {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: none;
+    top: 6.1%;
+    left: 77.5%;
+    cursor: pointer;
+}
+
+.play {
+    position: absolute;
+    width: 300px;
+    height:75px;
+    background-color: #DC8B19;
+    top: 85%;
+    left: 29%;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+}
+
+#id_play {
+    color: white;
+    font-size: 400%;
+    font-family: 'Rufing', sans-serif;
+    font-weight: bold;
+}
+
+.title {
+    position: absolute;
+    display: flex ;
+    width: 35%;
+    height: 55%;
+    background-color: none;
+    top: 20%;
+    left: 38%;
+    justify-content: center;
+    align-items: center;
+}
+#id_title {
+    color: white;
+    font-size: 900%;
+    font-family: 'Rufing', sans-serif;
+    text-align: center;
+}
