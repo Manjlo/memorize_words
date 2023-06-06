@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <script type="module" src="controller\info.js"></script>
+    <script type="module" src="controller\infoText.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>I KNOW THAT WORD</title>
 </head>
 <body>
-    <div class="modal" id="id_modal"></div>
-    <div class="root" id="id_:root">
-        <div class="info"></div>
+    <div class="root" id="id_root">
+        <div class="infoModal" id="id_info_modal">
+            <div class="divTextInfo" id="id_divTextInfo"></div>
+            <button class="infoButton" id="id_infoButton">Continuar</button>
+        </div>
+        <div class="info" id="id_info"></div>
         <div class="playButton">
             <button class="play" id="id_play">PLAY</button>
         </div>

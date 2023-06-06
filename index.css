@@ -1,16 +1,18 @@
+/*Exportamos la tipografia*/
 @font-face {
-    font-family: 'Rufing';
+    font-family: 'Volare Free';
     src: url('assets/VOLARE FREE.ttf');
 }
-
+/*Definimos los parametros que seguirá el div padre pues dentro de este irá todo*/
 .root {
     position: relative;
     width: 100%;
+    top: 0;
     padding-top: 56.25%; /* 9 / 16 * 100% */ /* Esto mantiene la relacion de aspecto 16:9*/
     background-image: url('assets/background_cover.png');
     background-size:cover;
 }
-
+/*Definimos los parametros que seguirá el icono de informacion*/
 .info {
     position: absolute;
     width: 50px;
@@ -20,7 +22,7 @@
     left: 77.5%;
     cursor: pointer;
 }
-
+/*Definimos los parametros para el boton jugar*/
 .play {
     position: absolute;
     width: 300px;
@@ -33,14 +35,14 @@
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
-
+/*Definimos los parametros para el contenido del boton jugar*/
 #id_play {
     color: white;
     font-size: 400%;
-    font-family: 'Rufing', sans-serif;
+    font-family: 'Volare Free', sans-serif;
     font-weight: bold;
 }
-
+/*Definimos los parametros para el div donde irá el titulo*/
 .title {
     position: absolute;
     display: flex ;
@@ -52,9 +54,71 @@
     justify-content: center;
     align-items: center;
 }
+/*Definimos los parametros para el titulo*/
 #id_title {
     color: white;
     font-size: 900%;
-    font-family: 'Rufing', sans-serif;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+}
+/*Definimos los parametros del modal*/
+.infoModal {
+    position: absolute;
+    z-index: 1;
+    left: -80%;
+    top: 0;
+    width: 75%;
+    height: 100%;
+    background-image: url('assets/background_cover.png');
+    background-size: cover;
+    color: white;
+    transition: all 0.5s ease;
+}
+/*Definimos la posicion desde donde saldrá el modal*/
+.infoModal.show {
+    position: absolute;
+    left: 0;
+}
+/*Definimos los parametros para el div donde irá la informacion*/
+.divTextInfo {
+    position: absolute;
+    display: flex ;
+    width: 50%;
+    height: 60%;
+    top: 20%;
+    left: 49%;
+    background-color: rgba(0,0,0,0.6);
+    box-shadow: 3px 3px 10px 5px rgba(0,0,0,0.6);
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+/*Definimos los parametros para la informacion dentro del div*/
+#id_divTextInfo {
+    color: white;
+    font-size: 500%;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+}
+/*Definimos los parametros para el boton*/
+.infoButton {
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    top: 85%;
+    left: 41.9%;
+    background-color:  #DC8B19;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+}
+/*Definimos los parametros para el texto en el boton*/
+#id_infoButton {
+    color: white;
+    font-size: 350%;
+    font-family: 'Volare Free', sans-serif;
     text-align: center;
 }
