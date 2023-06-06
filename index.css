@@ -185,13 +185,53 @@
 /*Definimos los parametros para el div donde se mostrarán las palabras a memorizar*/
 #id_wordsContainer {
     position: absolute;
-    width: 35%;
-    height: 55%;
-    background-color: black;
-    opacity: 0.5;
-    top: 20%;
-    left: 38%;
+    width: 55%;
+    height: 81%;
+    background-color: none;
+    top: 12%;
+    left: 28%;
     justify-content: center;
     align-items: center;
 }
 
+.words{
+    position: absolute;
+    background-color: #EECF86;
+    width: 100%;
+    height: 70%;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.choose{
+    position: absolute;
+    display: flex;
+    background-color: none;
+    width: 100%;
+    height: 30%;
+    top: 70%;
+    align-items: center;
+}
+#id_yes{
+    width: 50%;
+    height: 90%;
+    background-color: none;
+    cursor: pointer;
+    border-radius: 15PX;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+    font-size: 500%;
+}
+#id_no{
+    width: 50%;
+    height: 90%;
+    background-color: none;
+    cursor: pointer;
+    border-radius: 15PX;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+    font-size: 500%;
+}
