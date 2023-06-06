@@ -4,6 +4,7 @@ let playButton = document.getElementById("id_play");
 let continueButton = document.getElementById("id_continue");
 let oldDiv = document.getElementById("id_title");
 let newDiv = document.getElementById("id_wordsContainer");
+let infoDiv = document.getElementById("id_info");
 let aliasInput = document.getElementById("alias");
 
 // definimos un arreglo vacio donde se guardará el alias del jugador
@@ -19,6 +20,7 @@ continueButton.onclick = function() {
     aliasArray.push(aliasValue);
     modal.style.display = "none";
     oldDiv.remove();
+    infoDiv.remove();
     playButton.remove();
     newDiv.classList.remove("wordsContainer");
 }

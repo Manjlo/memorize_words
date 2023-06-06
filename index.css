@@ -182,7 +182,7 @@
 .wordsContainer {
     display: none;
 }
-/*Definimos los parametros para el div donde se mostrarán las palabras a memorizar*/
+/*Definimos los parametros para el div donde se mostrarán las palabras a memorizar y los botones de si y no*/
 #id_wordsContainer {
     position: absolute;
     width: 55%;
@@ -193,19 +193,41 @@
     justify-content: center;
     align-items: center;
 }
-
+/*Definimos los parametros que seguirá la  division donde se mostrarán las palabras*/
 .words{
     position: absolute;
-    background-color: #EECF86;
+    background-color: none;
     width: 100%;
     height: 70%;
-    font-family: 'Volare Free', sans-serif;
-    text-align: center;
     justify-content: center;
     align-items: center;
-    opacity: 0.5;
 }
+/* Establece la posición del elemento como relativa para que los elementos hijos puedan posicionarse en relación a él */
+#id_words {
+    position: relative;
+    font-size: 200%;
+}
+/* Establece la posición de los elementos span como absoluta para poder moverlos */
+#id_words span {
+    position: absolute;
+    font-size: 350%;
+    background-color: #EECF86;
+    color: #D9673B;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+    font-family: 'Volare Free', sans-serif;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: black 1px solid;
 
+    /* Agrega transiciones en las propiedades left y top */
+    transition: left 2s ease-in-out, top 2s ease-in-out;
+}
+/*Definimos los parametros que seguirá el div donde van los botones*/
 .choose{
     position: absolute;
     display: flex;
@@ -214,24 +236,40 @@
     height: 30%;
     top: 70%;
     align-items: center;
+    justify-content: center
 }
+/*Definimos el diseño de los botones*/
 #id_yes{
-    width: 50%;
+    width: 40%;
     height: 90%;
-    background-color: none;
+    background-color: #EECF86;
+    color: #D9673B;
     cursor: pointer;
     border-radius: 15PX;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
     font-size: 500%;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+}
+#id_yes:hover{
+    background-color: #799726;
+    color: black;
 }
 #id_no{
-    width: 50%;
+    width: 40%;
     height: 90%;
-    background-color: none;
+    background-color: #EECF86;
+    color: #D9673B;
     cursor: pointer;
     border-radius: 15PX;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
     font-size: 500%;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+}
+#id_no:hover{
+    background-color: #799726;
+    color: black;
 }
