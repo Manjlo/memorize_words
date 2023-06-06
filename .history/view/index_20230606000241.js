@@ -1,0 +1,1 @@
+console.log('view/index.js');
