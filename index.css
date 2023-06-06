@@ -25,8 +25,8 @@
 /*Definimos los parametros para el boton jugar*/
 .play {
     position: absolute;
-    width: 300px;
-    height:75px;
+    width: 17.5vw;
+    height:4.5vw;
     background-color: #DC8B19;
     top: 85%;
     left: 29%;
@@ -38,7 +38,7 @@
 /*Definimos los parametros para el contenido del boton jugar*/
 #id_play {
     color: white;
-    font-size: 400%;
+    font-size: 4.1vw;
     font-family: 'Volare Free', sans-serif;
     font-weight: bold;
 }
@@ -61,7 +61,7 @@
 /*Definimos los parametros para el titulo*/
 #id_title {
     color: white;
-    font-size: 900%;
+    font-size: 9vw;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
 }
@@ -100,15 +100,15 @@
 /*Definimos los parametros para la informacion dentro del div*/
 #id_divTextInfo {
     color: white;
-    font-size: 500%;
+    font-size: 4.7vw;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
 }
 /*Definimos los parametros para el boton*/
 .infoButton {
     position: absolute;
-    width: 20%;
-    height: 10%;
+    width: 15vw;
+    height: 5vw;
     top: 85%;
     left: 41.9%;
     background-color:  #DC8B19;
@@ -122,7 +122,7 @@
 /*Definimos los parametros para el texto en el boton*/
 #id_infoButton {
     color: white;
-    font-size: 350%;
+    font-size: 3.9vw;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
 }
@@ -149,15 +149,15 @@
     padding: 20px;
     border: 1px solid #D9673B;
     box-shadow: 5px 3px 7px #D9673B;
-    width: 65%;
+    width: 66vw;
     text-align: center;
     font-family: 'Volare Free', sans-serif;
-    font-size: 300%;
+    font-size: 3.3vw;
     border-radius: 10PX;
 }
 /*Definimos los parametros para la entrada de texto*/
 #alias{
-    font-size: 150%;
+    font-size: 4.5vw;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
     color: white;
@@ -165,7 +165,7 @@
 }
 /*Definimos los parametros para el boton de continuar a jugar*/
 #id_continue{
-    font-size: 100%;
+    font-size: 3.3vw;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
     background-color: #D9673B;
@@ -210,14 +210,14 @@
 /* Establece la posición de los elementos span como absoluta para poder moverlos */
 #id_words span {
     position: absolute;
-    font-size: 350%;
+    font-size: 6vw;
     background-color: #EECF86;
     color: #D9673B;
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
     font-family: 'Volare Free', sans-serif;
-    width: 120px;
-    height: 120px;
+    width: 8vw;
+    height: 8vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,15 +240,15 @@
 }
 /*Definimos el diseño de los botones*/
 #id_yes{
-    width: 40%;
-    height: 90%;
+    width: 21vw;
+    height: 11vw;
     background-color: #EECF86;
     color: #D9673B;
     cursor: pointer;
     border-radius: 15PX;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
-    font-size: 500%;
+    font-size: 6vw;
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
@@ -257,15 +257,15 @@
     color: black;
 }
 #id_no{
-    width: 40%;
-    height: 90%;
+    width: 21vw;
+    height: 11vw;
     background-color: #EECF86;
     color: #D9673B;
     cursor: pointer;
     border-radius: 15PX;
     font-family: 'Volare Free', sans-serif;
     text-align: center;
-    font-size: 500%;
+    font-size: 6vw;
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
