@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="module" src="controller\info.js"></script>
     <script type="module" src="controller\infoText.js"></script>
+    <script type="module" src="controller\alias.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>I KNOW THAT WORD</title>
 </head>
@@ -15,9 +16,17 @@
         </div>
         <div class="info" id="id_info"></div>
         <div class="playButton">
-            <button class="play" id="id_play">PLAY</button>
+            <button class="play" id="id_play">JUGAR</button>
         </div>
         <div class="title" id="id_title">I KNOW THAT WORD!</div>
+        <div class="modalAlias" id="id_modalAlias">
+            <div class="content">
+                <label for="alias">ALIAS:</label>
+                <input type="text" id="alias" name="alias">
+                <button id="id_continue">Continua a jugar</button>
+            </div>
+        </div>
+        <div class="wordsContainer" id="id_wordsContainer"></div>
     </div>
 </body>
 </html>

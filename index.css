@@ -42,6 +42,10 @@
     font-family: 'Volare Free', sans-serif;
     font-weight: bold;
 }
+#id_play:hover {
+    background-color: #EECF86;
+    color: #D9673B;
+}
 /*Definimos los parametros para el div donde irá el titulo*/
 .title {
     position: absolute;
@@ -122,3 +126,72 @@
     font-family: 'Volare Free', sans-serif;
     text-align: center;
 }
+#id_infoButton:hover {
+    background-color: #EECF86;
+    color: #D9673B;
+}
+/*Definimos los parametros para el modal donde se registrará el alias*/
+.modalAlias {
+    position: absolute;
+    display: none;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);  
+}
+/*Definimos los parametros que tendra el espacio donde van a ir labels, inputs y botones*/
+.content {
+    background-color: #EECF86;
+    margin: 25% auto;
+    padding: 20px;
+    border: 1px solid #D9673B;
+    box-shadow: 5px 3px 7px #D9673B;
+    width: 65%;
+    text-align: center;
+    font-family: 'Volare Free', sans-serif;
+    font-size: 300%;
+    border-radius: 10PX;
+}
+/*Definimos los parametros para la entrada de texto*/
+#alias{
+    font-size: 150%;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+    color: white;
+    background-color: #06AAC2;
+}
+/*Definimos los parametros para el boton de continuar a jugar*/
+#id_continue{
+    font-size: 100%;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+    background-color: #D9673B;
+    cursor: pointer;
+    border-radius: 10PX;
+    box-shadow: 5px 3px 7px #D9673B;
+}
+/*Definimos que el boton cambie el color cuando el cursor este sobre el*/
+#id_continue:hover{
+    background-color: #EECF86;
+    color: #D9673B;
+}
+/*Esta clase estará ejecutandose hasta que el boton continuar del modal de la orden de eliminarla*/
+.wordsContainer {
+    display: none;
+}
+/*Definimos los parametros para el div donde se mostrarán las palabras a memorizar*/
+#id_wordsContainer {
+    position: absolute;
+    width: 35%;
+    height: 55%;
+    background-color: black;
+    opacity: 0.5;
+    top: 20%;
+    left: 38%;
+    justify-content: center;
+    align-items: center;
+}
+
