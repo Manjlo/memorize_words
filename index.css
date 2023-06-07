@@ -15,8 +15,8 @@
 /*Definimos los parametros que seguirá el icono de informacion*/
 .info {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 3vw;
+    height: 3vw;
     background-color: none;
     top: 6.1%;
     left: 77.5%;
@@ -205,7 +205,6 @@
 /* Establece la posición del elemento como relativa para que los elementos hijos puedan posicionarse en relación a él */
 #id_words {
     position: relative;
-    font-size: 200%;
 }
 /* Establece la posición de los elementos span como absoluta para poder moverlos */
 #id_words span {
@@ -272,4 +271,28 @@
 #id_no:hover{
     background-color: #799726;
     color: black;
+}
+
+.closeButton{
+    display: none;
+}
+.closeButton2{
+    display: flex;
+}
+#id_closeButton{
+    position: absolute;
+    width: 3.5vw;
+    height: 3.5vw;
+    background-color: #EECF86;
+    top: 6.1%;
+    left: 77.4%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #D9673B;
+    font-size: 4vw;
+    font-family: 'Volare Free', sans-serif;
+    font-weight: bold;
+    text-align: center;
 }
