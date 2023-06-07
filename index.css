@@ -20,7 +20,7 @@
     background-color: none;
     top: 6.1%;
     left: 77.5%;
-    cursor: pointer;
+    cursor: help;
 }
 /*Definimos los parametros para el boton jugar*/
 .play {
@@ -224,7 +224,7 @@
     border: black 1px solid;
 
     /* Agrega transiciones en las propiedades left y top */
-    transition: left 2s ease-in-out, top 2s ease-in-out;
+    transition: left 0.5s ease-in-out, top 0.5s ease-in-out;
 }
 /*Definimos los parametros que seguirá el div donde van los botones*/
 .choose{
@@ -295,4 +295,77 @@
     font-family: 'Volare Free', sans-serif;
     font-weight: bold;
     text-align: center;
+}
+#id_closeButton:hover{
+    background-color: #D9673B;
+    color: #EECF86;
+}
+/*Esta clase se eliminará mostrando asi la clase playerLabel2*/
+.playerLabel{
+    display: none;
+}
+.playerLabel2{
+    position: absolute;
+    width: 26vw;
+    height: 4vw;
+    background-color: #EECF86;
+    top: 14.5%;
+    left: 3%;
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    cursor: text;
+    border-radius: 10PX;
+    box-shadow: 5px 3px 7px #D9673B;
+}
+#id_playerLabel{
+    color: #D9673B;
+    font-family: 'Volare Free', sans-serif;
+    font-size: 3vw;
+}
+/*Esta clase se eliminará mostrando asi la clase playerLevel2*/
+.playerLevel{
+    display: none;
+}
+.playerLevel2{
+    position: absolute;
+    width: 20vw;
+    height: 4vw;
+    background-color: #EECF86;
+    top: 22.5%;
+    left: 3%;
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    cursor: text;
+    border-radius: 10PX;
+    box-shadow: 5px 3px 7px #D9673B;
+}
+#id_playerLevel{
+    color: #D9673B;
+    font-family: 'Volare Free', sans-serif;
+    font-size: 3vw;
+}
+
+.score{
+    display: none;
+}
+.score2{
+    position: absolute;
+    width: 16vw;
+    height: 4vw;
+    background-color: #EECF86;
+    top: 14.5%;
+    left: 82.3%;
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    cursor: text;
+    border-radius: 10PX;
+    box-shadow: 5px 3px 7px #D9673B;
+}
+#id_score{
+    color: #D9673B;
+    font-family: 'Volare Free', sans-serif;
+    font-size: 3vw;
 }
