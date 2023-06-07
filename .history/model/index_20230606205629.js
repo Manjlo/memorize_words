@@ -3,7 +3,7 @@ import User from "./models/User.js";
 import Level from "./models/Level.js";
 
 export {
-  Words,
+  Word,
   User,
   Level
 }

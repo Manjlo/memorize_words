@@ -5,8 +5,8 @@ import CONFIG from "./utils.js";
 console.log("run");
 
 class PlayController {
-  constructor() {
-    this.view = new PlayView();
+  constructor(view) {
+    this.view = new PlayView()
     this.player = null;
     this.level = null;
     this.wordsToMemorize = null;
@@ -36,7 +36,8 @@ class PlayController {
   }
 
   setActualWord(word) {
-    this.actualWord = word
+    console.log(word, typeof(word), "word");
+    this.word = word
   }
 
   setIsComplete(isComplete) {
@@ -48,10 +49,9 @@ class PlayController {
   async initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
       await this.setWords();
       this.showWordsToMemorize();
-      if (this.isComplete) {
+      if (isComplete) {
         this.playButton.addEventListener('click', this.questionsWords.bind(this))
         this.view.showPlayButton();
         this.setIsComplete(false);
@@ -110,11 +110,11 @@ class PlayController {
   }
 
   showWordsToMemorize() {
-    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord, this.setIsComplete, false);
   }
 
   showNormalWords() {
-    this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+    this.view.showWords(this.words.getWords(), this.setActualWord, this.setIsComplete, true);
   }
 
   async saveUser() {
@@ -124,7 +124,7 @@ class PlayController {
     this.view.hideModalAlias();
     await this.setWords();
     this.showWordsToMemorize();
-    if (this.isComplete) {
+    if (isComplete) {
       this.playButton.addEventListener('click', this.questionsWords.bind(this))
       this.view.showPlayButton();
       this.setIsComplete(false);
@@ -156,7 +156,7 @@ class PlayController {
   }
 
   questionsWords() {
-    this.showNormalWords();
+    let isComplete = this.view.showWords(this.words);
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
     this.showNormalWords();
@@ -168,4 +168,4 @@ class PlayController {
 
 
 
-new PlayController(new PlayView(), "hola")
+new PlayController(new PlayView())

@@ -5,14 +5,13 @@ import CONFIG from "./utils.js";
 console.log("run");
 
 class PlayController {
-  constructor() {
-    this.view = new PlayView();
+  constructor(view) {
+    this.view = new PlayView()
     this.player = null;
     this.level = null;
     this.wordsToMemorize = null;
     this.words = null;
     this.actualWord = null;
-    this.word = null;
     this.acertNumber = 0;
     this.isComplete = false;
     console.log(this.view);
@@ -36,7 +35,7 @@ class PlayController {
   }
 
   setActualWord(word) {
-    this.actualWord = word
+    this.actualWord = word;
   }
 
   setIsComplete(isComplete) {
@@ -45,13 +44,12 @@ class PlayController {
 
   //Set Info Text and Show Info Modal
 
-  async initGame() {
+  initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
-      await this.setWords();
+      this.setWords();
       this.showWordsToMemorize();
-      if (this.isComplete) {
+      if (isComplete) {
         this.playButton.addEventListener('click', this.questionsWords.bind(this))
         this.view.showPlayButton();
         this.setIsComplete(false);
@@ -99,32 +97,28 @@ class PlayController {
     });
   }
 
- async setWords() {
+  setWords() {
     let levelConfig = CONFIG.levels.find(level => level.level === this.player.actualLevel)
     this.level = new Level(levelConfig.wordsToMemorize, levelConfig.words, levelConfig.level, levelConfig.aciertos);
-    try {    
-    await this.getWords(this.level.getWordsToMemorize(), this.level.getLevelWords());
-    } catch (error) {
-      console.error('Error al cargar el archivo:', error);
-    }
+    this.getWords(this.level.getWordsToMemorize(), this.level.getLevelWords());
   }
 
   showWordsToMemorize() {
-    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord, this.setIsComplete, false);
   }
 
   showNormalWords() {
-    this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+    this.view.showWords(this.words.getWords(), this.setActualWord, this.setIsComplete, true);
   }
 
-  async saveUser() {
+  saveUser() {
     const alias = this.view.aliasInput.value;
     this.player = new User(alias);
     localStorage.setItem('user', JSON.stringify(this.player));
     this.view.hideModalAlias();
-    await this.setWords();
+    this.setWords();
     this.showWordsToMemorize();
-    if (this.isComplete) {
+    if (isComplete) {
       this.playButton.addEventListener('click', this.questionsWords.bind(this))
       this.view.showPlayButton();
       this.setIsComplete(false);
@@ -156,7 +150,7 @@ class PlayController {
   }
 
   questionsWords() {
-    this.showNormalWords();
+    let isComplete = this.view.showWords(this.words);
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
     this.showNormalWords();
@@ -168,4 +162,4 @@ class PlayController {
 
 
 
-new PlayController(new PlayView(), "hola")
+new PlayController(new PlayView())

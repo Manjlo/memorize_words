@@ -23,8 +23,8 @@ class PlayView {
 
   //Hide Info Modal
   hideInfo() {
-    this.infoContainer.remove()
-    this.title.remove()
+    this.infoContainer.style.display = 'none';
+    this.title.style.display = 'none';
   }
 
   // Set position of each letter in a random place inside the div

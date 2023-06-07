@@ -48,7 +48,6 @@ class PlayController {
   async initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
       await this.setWords();
       this.showWordsToMemorize();
       if (this.isComplete) {
@@ -59,6 +58,7 @@ class PlayController {
     } else {
       this.view.showModalAlias();
     }
+    this.view.hideInfo();
   }
   async getWords(numberOfWordsToMemorize, numberOfWords) {
     return new Promise(async (resolve, reject) => {

@@ -12,7 +12,6 @@ class PlayView {
     this.outButton = document.getElementById('id_closeButton');
     this.playNextButton = document.getElementById('id_next_button');
     this.modalAlias = document.getElementById('id_modalAlias');
-    this.title = document.getElementById('id_title');
   }
 
   //Set Info Text and Show Info Modal
@@ -23,8 +22,7 @@ class PlayView {
 
   //Hide Info Modal
   hideInfo() {
-    this.infoContainer.remove()
-    this.title.remove()
+    this.infoContainer.style.display = 'none';
   }
 
   // Set position of each letter in a random place inside the div
@@ -33,6 +31,9 @@ class PlayView {
     const top = Math.random() * (this.wordsContainer.offsetHeight - element.offsetHeight);
     element.style.left = `${left}px`;
     element.style.top = `${top}px`;
+  }
+  hideTitle(){
+  
   }
   
   //Split words and return array of letters with random position in an span element

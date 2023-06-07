@@ -12,7 +12,6 @@ class PlayView {
     this.outButton = document.getElementById('id_closeButton');
     this.playNextButton = document.getElementById('id_next_button');
     this.modalAlias = document.getElementById('id_modalAlias');
-    this.title = document.getElementById('id_title');
   }
 
   //Set Info Text and Show Info Modal
@@ -23,8 +22,7 @@ class PlayView {
 
   //Hide Info Modal
   hideInfo() {
-    this.infoContainer.remove()
-    this.title.remove()
+    this.infoContainer.style.display = 'none';
   }
 
   // Set position of each letter in a random place inside the div
@@ -55,6 +53,7 @@ class PlayView {
     console.log(word, "word");
     if (setActualWord) setActualWord(word);
     let letters = this.splitWord(word);
+    console.log(letters, "letters");
 
     //Remove all letters from the words container
     this.wordsContainer.innerHTML = '';
@@ -69,7 +68,7 @@ class PlayView {
       letters.forEach((letter, i) => {
         // set the final position of each letter and update its left and top properties
         const left = i * (letter.offsetWidth + 30); // add space between letters
-        const top = (letter.offsetHeight - letter.offsetHeight) / 2;
+        const top = (textElement.offsetHeight - letter.offsetHeight) / 2;
         letter.style.left = `${left}px`;
         letter.style.top = `${top}px`;
       });

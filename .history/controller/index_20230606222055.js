@@ -5,13 +5,13 @@ import CONFIG from "./utils.js";
 console.log("run");
 
 class PlayController {
-  constructor() {
-    this.view = new PlayView();
+  constructor(view, word) {
+    this.view = view;
     this.player = null;
     this.level = null;
     this.wordsToMemorize = null;
     this.words = null;
-    this.actualWord = null;
+    this.actualWord = word;
     this.word = null;
     this.acertNumber = 0;
     this.isComplete = false;
@@ -48,7 +48,6 @@ class PlayController {
   async initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
       await this.setWords();
       this.showWordsToMemorize();
       if (this.isComplete) {
@@ -59,6 +58,7 @@ class PlayController {
     } else {
       this.view.showModalAlias();
     }
+    this.view.hideInfo();
   }
   async getWords(numberOfWordsToMemorize, numberOfWords) {
     return new Promise(async (resolve, reject) => {

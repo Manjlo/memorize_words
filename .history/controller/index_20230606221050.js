@@ -5,13 +5,13 @@ import CONFIG from "./utils.js";
 console.log("run");
 
 class PlayController {
-  constructor() {
-    this.view = new PlayView();
+  constructor(view, word) {
+    this.view = view;
     this.player = null;
     this.level = null;
     this.wordsToMemorize = null;
     this.words = null;
-    this.actualWord = null;
+    this.actualWord = word;
     this.word = null;
     this.acertNumber = 0;
     this.isComplete = false;
@@ -48,7 +48,6 @@ class PlayController {
   async initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
       await this.setWords();
       this.showWordsToMemorize();
       if (this.isComplete) {
@@ -110,11 +109,11 @@ class PlayController {
   }
 
   showWordsToMemorize() {
-    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete, false);
   }
 
   showNormalWords() {
-    this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+    this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete, true);
   }
 
   async saveUser() {
@@ -156,7 +155,7 @@ class PlayController {
   }
 
   questionsWords() {
-    this.showNormalWords();
+    this.view.showWords(this.words);
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
     this.showNormalWords();

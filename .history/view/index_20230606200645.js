@@ -1,6 +1,6 @@
 class PlayView {
   constructor() {
-    this.playButton = document.getElementById('id_play');
+    this.playButton = document.getElementById('play');
     this.aliasInput = document.getElementById('alias');
     this.playContinueButton = document.getElementById('id_continue');
     this.wordsContainer = document.getElementById('id_wordsContainer');
@@ -9,10 +9,8 @@ class PlayView {
     this.infoContainer = document.getElementById('id_info_modal');
     this.infoText = document.getElementById('id_divTextInfo');
     this.infoButton = document.getElementById('id_info');
-    this.outButton = document.getElementById('id_closeButton');
+    this.outButton = document.getElementById('out-button');
     this.playNextButton = document.getElementById('id_next_button');
-    this.modalAlias = document.getElementById('id_modalAlias');
-    this.title = document.getElementById('id_title');
   }
 
   //Set Info Text and Show Info Modal
@@ -23,8 +21,7 @@ class PlayView {
 
   //Hide Info Modal
   hideInfo() {
-    this.infoContainer.remove()
-    this.title.remove()
+    this.infoContainer.style.display = 'none';
   }
 
   // Set position of each letter in a random place inside the div
@@ -43,17 +40,14 @@ class PlayView {
 
       //Set position of each letter in a random place inside the div
       this.setRandomPosition(span);
+
       return span;
     });
-    return leters;
   }
   //Show word in the words container
-  showWords(words, setActualWord, setIsComplete, showAccertButtons) {
-    console.log(words, "words");
+  showWords(words) {
     let index = 0;
     let word = words[index];
-    console.log(word, "word");
-    if (setActualWord) setActualWord(word);
     let letters = this.splitWord(word);
 
     //Remove all letters from the words container
@@ -63,13 +57,10 @@ class PlayView {
 
     // Update the text after 1 second
     setTimeout(() => {
-
-      if(showAccertButtons) this.showAccertButtons();
-
       letters.forEach((letter, i) => {
         // set the final position of each letter and update its left and top properties
         const left = i * (letter.offsetWidth + 30); // add space between letters
-        const top = (letter.offsetHeight - letter.offsetHeight) / 2;
+        const top = (textElement.offsetHeight - letter.offsetHeight) / 2;
         letter.style.left = `${left}px`;
         letter.style.top = `${top}px`;
       });
@@ -82,14 +73,10 @@ class PlayView {
 
         // Update the index of the current word and restart the animation
         index = (index++) % words.length;
-        if (index === 0) {
-          setIsComplete(true);
-        } else {
-          setTimeout(this.showWords(), 1000);
-        }
+        setTimeout(updateText, 1000);
       }, 5000);
     }, 1000);
-
+    return true
   }
 
   showContinuePlay() {
@@ -98,10 +85,6 @@ class PlayView {
 
   showPlayButton() {
     this.playButton.style.display = 'block';
-  }
-
-  hidePlayButton() {
-    this.playButton.style.display = 'none';
   }
 
   showChooseAcert() {
@@ -115,11 +98,7 @@ class PlayView {
   }
 
   showModalAlias() {
-    this.modalAlias.style.display = "block";
-  }
-
-  hideModalAlias() {
-    this.modalAlias.style.display = "none";
+    this.modal.style.display = "block";
   }
 
 
