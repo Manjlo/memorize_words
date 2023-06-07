@@ -1,5 +1,4 @@
-import { Level, User, Word } from "../model/index.js";
-import Words from "../model/models/Word.js";
+import { Level, User } from "../model/index.js";
 import PlayView from "../view.js";
 import CONFIG from "./utils.js";
 
@@ -9,9 +8,6 @@ class PlayController {
   constructor(view) {
     this.view = new PlayView()
     this.player = null;
-    this.level = null;
-    this.words = null;
-
 
     this.view.playButton.addEventListener('click', this.initGame.bind(this));
     this.view.playContinueButton.addEventListener('click', this.saveUser.bind(this));
@@ -43,19 +39,12 @@ class PlayController {
     }
   }
 
-  getWords(numberOfWords) {
-
-    this.words = new Words(wordsFromObject)
-  }
-
   saveUser() {
     const alias = this.view.aliasInput.value;
     this.player = new User(alias);
     localStorage.setItem('user', JSON.stringify(user));
     this.view.hideModalAlias();
-    let levelConfig = CONFIG.levels.find(level => level.level === this.player.actualLevel)
-    this.level = new Level(levelConfig.wordsToMemorize, levelConfig.words, levelConfig.level, levelConfig.aciertos);
-    this.getWords(this.level.words);
+    
     this.view.showWords(user.words);
   }
 }

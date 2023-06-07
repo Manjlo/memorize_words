@@ -100,4 +100,6 @@ class PlayView {
 }
 
 
-export default PlayView;
+
+
+

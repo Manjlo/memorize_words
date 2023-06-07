@@ -46,6 +46,8 @@ class PlayController {
   getWords(numberOfWords) {
 
     this.words = new Words(wordsFromObject)
+
+    return words;
   }
 
   saveUser() {
@@ -55,7 +57,8 @@ class PlayController {
     this.view.hideModalAlias();
     let levelConfig = CONFIG.levels.find(level => level.level === this.player.actualLevel)
     this.level = new Level(levelConfig.wordsToMemorize, levelConfig.words, levelConfig.level, levelConfig.aciertos);
-    this.getWords(this.level.words);
+    
+
     this.view.showWords(user.words);
   }
 }
