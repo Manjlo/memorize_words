@@ -346,7 +346,7 @@
     font-family: 'Volare Free', sans-serif;
     font-size: 3vw;
 }
-
+/*Esta clase se eliminará mostrando asi la clase score2*/
 .score{
     display: none;
 }

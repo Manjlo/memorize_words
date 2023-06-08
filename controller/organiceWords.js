@@ -1,11 +1,25 @@
-const words = ['Bailar', 'Caldero', 'Programar','zapato','casa','perro','gato','raton','pajaro','pescado'];
+//const words = ['Bailar', 'Caldero', 'Programar','zapato','casa','perro','gato','raton','pajaro','pescado'];
+const words = ['Bailar', 'Caldero', 'Programar']
+const words2 = ['manzana', 'naranja', 'banana'];
 let index = 0;
+let currentWords = words;
 const textElement = document.querySelector('#id_words');
+const buttonElement = document.createElement('button');
+buttonElement.textContent = 'Desea continuar';
+buttonElement.style.display = 'none';
+document.body.appendChild(buttonElement);
+
+buttonElement.addEventListener('click', () => {
+    currentWords = words2;
+    index = 0;
+    updateText();
+    buttonElement.style.display = 'none';
+});
 
 // Función para actualizar el contenido del elemento
 function updateText() {
     // Obtiene la palabra actual
-    const word = words[index];
+    const word = currentWords[index];
   
     // Crea un elemento span para cada letra de la palabra
     const letters = word.split('').map(letter => {
@@ -49,11 +63,19 @@ function updateText() {
         });
       
         // Actualiza el índice de la palabra actual y reinicia la animación
-        index = (index + 1) % words.length;
-        setTimeout(updateText, 1000);
-        }, 7000);
+        //index = (index + 1) % words.length;
+        //setTimeout(updateText, 1000);
+        //}, 7000);
+    //}, 1000);
+        index++;
+        if (index < currentWords.length) {
+            setTimeout(updateText, 1000);
+        } else if (currentWords === words) {
+            buttonElement.style.display = 'block';}
+        }, 5000);
     }, 1000);
 }
 
 // Actualiza el contenido del elemento inicialmente
 updateText();
+
