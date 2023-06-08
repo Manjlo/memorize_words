@@ -1,3 +1,16 @@
+// Definimos las variables con el texto de la informacion 
+var info_1 = "Se te presentará una secuencia de palabras, una detras de otra. Memorizalas todas. El orden no es relevante."
+
+var info_2 = "Tras la serie de palabras a memorizar, el juego te presentará un listado con el doble de palabras."
+
+var info_3 = "Si la palabra pertenece al listado que has memorizado, pulsa el botón 'SI'. Si no, pulsa el botón 'NO'."
+
+var info_4 = " Si tardas mucho en responder, el juego lo considerará como un fallo."
+
+// Creamos un arreglo con las variables
+var textos = [info_1, info_2,  info_3, info_4];
+
+
 const CONFIG = {
   levels: [
     { level: 1, wordsToMemorize: 10, words: 20, time: 5, aciertos: 70 },
@@ -10,7 +23,9 @@ const CONFIG = {
     { level: 8, wordsToMemorize: 60, words: 120, time: 5, aciertos: 90 },
     { level: 9, wordsToMemorize: 70, words: 140, time: 5, aciertos: 95 },
     { level: 10, wordsToMemorize: 100, words: 200, time: 5, aciertos: 100},
-  ]
+  ],
+  infoText: textos
+
 }
 
 export default CONFIG;

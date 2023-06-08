@@ -38,4 +38,3 @@ continueButton.onclick = function() {
 }
 
 // mostramos el array en consola para comprobar que se ha guardado correctamente
-console.log(aliasArray)
