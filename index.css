@@ -273,12 +273,6 @@ span {
     color: black;
 }
 
-.closeButton{
-    display: none;
-}
-.closeButton2{
-    display: flex;
-}
 #id_closeButton{
     position: absolute;
     width: 3.5vw;
@@ -325,9 +319,6 @@ span {
 }
 /*Esta clase se eliminará mostrando asi la clase playerLevel2*/
 .playerLevel{
-    display: none;
-}
-.playerLevel2{
     position: absolute;
     width: 20vw;
     height: 4vw;
@@ -348,9 +339,6 @@ span {
 }
 /*Esta clase se eliminará mostrando asi la clase score2*/
 .score{
-    display: none;
-}
-.score2{
     position: absolute;
     width: 16vw;
     height: 4vw;

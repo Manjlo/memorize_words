@@ -21,9 +21,9 @@ class PlayView {
 
     this.yesButton.style.display = 'none';
     this.noButton.style.display = 'none';
-    this.outButton.style.display = 'block';
-    this.playerLevel.style.display = 'block';
-    this.score.style.display = 'block';
+    this.outButton.style.display = 'flex';
+    this.playerLevel.style.display = 'flex';
+    this.score.style.display = 'flex';
   }
 
   showPlayerLevel(level) {
@@ -41,7 +41,7 @@ class PlayView {
   //Set Info Text and Show Info Modal
   showInfo(text) {
     this.infoText.innerHTML = text;
-    this.infoContainer.style.display = 'block';
+    this.infoContainer.style.display = 'flex';
   }
 
   //Hide Info Modal
@@ -131,11 +131,11 @@ class PlayView {
 
 
   showContinuePlay() {
-    this.playContinueButton.style.display = 'block';
+    this.playContinueButton.style.display = 'flex';
   }
 
   showPlayButton() {
-    this.playButton.style.display = 'block';
+    this.playButton.style.display = 'flex';
   }
 
   hidePlayButton() {
