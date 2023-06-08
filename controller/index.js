@@ -15,7 +15,6 @@ class PlayController {
     this.word = null;
     this.acertNumber = 0;
     this.isComplete = false;
-    console.log(this.view);
     this.view.playButton.addEventListener('click', this.initGame.bind(this));
     this.view.playContinueButton.addEventListener('click', this.saveUser.bind(this));
 
@@ -48,11 +47,13 @@ class PlayController {
   async initGame() {
     this.getUserToLocalStorage();
     if (this.player) {
-      this.view.hideInfo();
+
       await this.setWords();
-      this.showWordsToMemorize();
+      
+      await this.showWordsToMemorize();
+
       if (this.isComplete) {
-        this.playButton.addEventListener('click', this.questionsWords.bind(this))
+        this.view.playButton.addEventListener('click', this.questionsWords.bind(this))
         this.view.showPlayButton();
         this.setIsComplete(false);
       }
@@ -85,9 +86,6 @@ class PlayController {
           }
         }
 
-        // Hacer algo con el array de palabras
-        console.log(wordsToMemorize);
-        console.log(words);
         this.wordsToMemorize = new Words(wordsToMemorize);
         this.words = new Words(words);
 
@@ -99,7 +97,7 @@ class PlayController {
     });
   }
 
- async setWords() {
+  async setWords() {
     let levelConfig = CONFIG.levels.find(level => level.level === this.player.actualLevel)
     this.level = new Level(levelConfig.wordsToMemorize, levelConfig.words, levelConfig.level, levelConfig.aciertos);
     try {    
@@ -109,8 +107,16 @@ class PlayController {
     }
   }
 
-  showWordsToMemorize() {
-    this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+  async showWordsToMemorize() {
+    this.view.hidePlayButton();
+    this.view.hideInfo()
+    try {
+    await this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+      
+    } catch (error) {
+      console.error('Error', error);
+      
+    }
   }
 
   showNormalWords() {
