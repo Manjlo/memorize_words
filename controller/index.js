@@ -48,6 +48,10 @@ class PlayController {
     this.getUserToLocalStorage();
     if (this.player) {
 
+      this.view.showPlayerName(`hola, ${this.player.nickname}`);
+      this.view.showScore(this.player.score);
+      this.view.showPlayerLevel(this.player.actualLevel);
+
       await this.setWords();
       
       await this.showWordsToMemorize();
