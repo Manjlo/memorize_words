@@ -9,6 +9,7 @@ class PlayView {
     this.infoContainer = document.getElementById('id_info_modal');
     this.infoText = document.getElementById('id_divTextInfo');
     this.infoButton = document.getElementById('id_info');
+    this.infoButtonContinue = document.getElementById('id_infoButton');
     this.outButton = document.getElementById('id_closeButton');
     this.playNextButton = document.getElementById('id_next_button');
     this.modalAlias = document.getElementById('id_modalAlias');
@@ -27,19 +28,23 @@ class PlayView {
   }
 
   showPlayerLevel(level) {
-    this.playerLevel.innerHTML = level;
+    this.playerLevel.textContent = level;
   }
 
   showPlayerName(name) {
-    this.nameLabel.innerHTML = name;
+    this.playerLabel.textContent = name;
   }
 
   showScore(score) {
-    this.score.innerHTML = score;
+    this.score.textContent = score;
   }
 
   //Set Info Text and Show Info Modal
-  showInfo(text) {
+  showInfoModal() {
+    this.infoContainer.classList.toggle("show");
+  }
+
+  showInfoText(text) {
     this.infoText.innerHTML = text;
     this.infoContainer.style.display = 'flex';
   }
@@ -48,6 +53,14 @@ class PlayView {
   hideInfo() {
     this.infoContainer.remove()
     this.title.remove()
+  }
+  //Hide Info Button
+  hideInfoButton() {
+    this.infoButton.style.display = 'none';
+  }
+
+  showOutButton() {
+    this.outButton.style.display = 'block';
   }
 
   // Set position of each letter in a random place inside the div
@@ -73,16 +86,11 @@ class PlayView {
   }
   //Show word in the words container
   showWords(words, setActualWord, setIsComplete, showAccertButtons) {
+    this.hideInfoButton();
+    this.showOutButton();
     return new Promise((resolve, reject) => {
       this.showWordsContainer();
       let index = 0;
-
-      const resolvePromise = () => {
-        if (index >= words.length) {
-          resolve(setIsComplete(true));
-          return;
-        }
-      };
 
       const animateWord = () => {
         let word = words[index];
@@ -116,18 +124,30 @@ class PlayView {
               this.setRandomPosition(letter);
             });
 
-            index++;
-            resolvePromise();
+            // Wait additional time before moving to the next word
+            setTimeout(() => {
+              // Increment the index of the current word
+              index++;
 
-            // Update the index of the current word and restart the animation
-            animateWord();
-          }, 5000);
-        }, 1000);
+              if (index === words.length) {
+                // If it's the last word, resolve the promise and set 'isComplete' to true
+                this.wordsContaner.innerHTML = '';
+                setIsComplete(true);
+                resolve();
+              } else {
+                // If there are more words, continue animating
+                animateWord();
+              }
+            }, 500); // Additional wait time before moving to the next word
+          }, 5000); // Animation time
+        }, 1000); // Initial wait time before animating the word
       };
 
       animateWord();
     });
   }
+
+
 
 
   showContinuePlay() {
@@ -140,6 +160,14 @@ class PlayView {
 
   hidePlayButton() {
     this.playButton.style.display = 'none';
+  }
+
+  showInfoContinueButton() {
+    this.infoButtonContinue.style.display = 'block';
+  }
+
+  hideInfoContinueButton() {
+    this.infoButtonContinue.style.display = 'none';
   }
 
   showChooseAcert() {

@@ -15,8 +15,10 @@ class PlayController {
     this.word = null;
     this.acertNumber = 0;
     this.isComplete = false;
+    this.indexInfo = 0;
     this.view.playButton.addEventListener('click', this.initGame.bind(this));
     this.view.playContinueButton.addEventListener('click', this.saveUser.bind(this));
+    this.view.infoButton.addEventListener('click', this.showInfoModal.bind(this));
 
   }
   //Get User from Local Storage
@@ -57,14 +59,22 @@ class PlayController {
       await this.showWordsToMemorize();
 
       if (this.isComplete) {
-        this.view.playButton.addEventListener('click', this.questionsWords.bind(this))
-        this.view.showPlayButton();
+        this.view.infoButtonContinue.addEventListener('click', this.questionsWords.bind(this))
+        this.view.showInfoContinueButton();
+        this.view.hidePlayButton();
         this.setIsComplete(false);
       }
     } else {
       this.view.showModalAlias();
     }
   }
+
+  showLabels() {
+    this.view.showPlayerLevel(this.player.actualLevel);
+    this.view.showPlayerName(this.player.nickname);
+    this.view.showScore(this.player.score);
+  }
+
   async getWords(numberOfWordsToMemorize, numberOfWords) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -173,6 +183,24 @@ class PlayController {
     if (isComplete) {
       this.checIfWin();
     }
+  }
+
+  showInfoModal() {
+    console.log("holass")
+    this.view.showInfoModal();
+
+    this.view.showInfoText(CONFIG.infoText[this.indexInfo]);
+    this.view.infoButtonContinue.addEventListener('click', this.showInfoText.bind(this));
+  }
+
+  showInfoText() {
+    if (this.indexInfo < CONFIG.infoText.length - 1) {
+      this.indexInfo += 1;
+    } else {
+      this.indexInfo = 0;
+    }
+    this.view.showInfoText(CONFIG.infoText[this.indexInfo]);
+
   }
 }
 
