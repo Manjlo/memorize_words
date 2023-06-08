@@ -3,7 +3,7 @@ class PlayView {
     this.playButton = document.getElementById('id_play');
     this.aliasInput = document.getElementById('alias');
     this.playContinueButton = document.getElementById('id_continue');
-    this.wordsContainer = document.getElementById('id_wordsContainer');
+    this.wordsContaner = document.getElementById('id_wordsContainer');
     this.yesButton = document.getElementById('id_yes');
     this.noButton = document.getElementById('id_no');
     this.infoContainer = document.getElementById('id_info_modal');
@@ -13,6 +13,10 @@ class PlayView {
     this.playNextButton = document.getElementById('id_next_button');
     this.modalAlias = document.getElementById('id_modalAlias');
     this.title = document.getElementById('id_title');
+
+
+    this.yesButton.style.display = 'none';
+    this.noButton.style.display = 'none';
   }
 
   //Set Info Text and Show Info Modal
@@ -29,12 +33,12 @@ class PlayView {
 
   // Set position of each letter in a random place inside the div
   setRandomPosition(element) {
-    const left = Math.random() * (this.wordsContainer.offsetWidth - element.offsetWidth);
-    const top = Math.random() * (this.wordsContainer.offsetHeight - element.offsetHeight);
+    const left = Math.random() * (this.wordsContaner.offsetWidth - element.offsetWidth);
+    const top = Math.random() * (this.wordsContaner.offsetHeight - element.offsetHeight);
     element.style.left = `${left}px`;
     element.style.top = `${top}px`;
   }
-  
+
   //Split words and return array of letters with random position in an span element
   splitWord(word) {
     const leters = word.split('').map(letter => {
@@ -49,48 +53,62 @@ class PlayView {
   }
   //Show word in the words container
   showWords(words, setActualWord, setIsComplete, showAccertButtons) {
-    console.log(words, "words");
-    let index = 0;
-    let word = words[index];
-    console.log(word, "word");
-    if (setActualWord) setActualWord(word);
-    let letters = this.splitWord(word);
+    return new Promise((resolve, reject) => {
+      this.showWordsContainer();
+      let index = 0;
 
-    //Remove all letters from the words container
-    this.wordsContainer.innerHTML = '';
-    //Add all letters to the words container
-    letters.forEach(letter => this.wordsContainer.appendChild(letter));
-
-    // Update the text after 1 second
-    setTimeout(() => {
-
-      if(showAccertButtons) this.showAccertButtons();
-
-      letters.forEach((letter, i) => {
-        // set the final position of each letter and update its left and top properties
-        const left = i * (letter.offsetWidth + 30); // add space between letters
-        const top = (letter.offsetHeight - letter.offsetHeight) / 2;
-        letter.style.left = `${left}px`;
-        letter.style.top = `${top}px`;
-      });
-
-      // Wait 5 seconds and then start the animation
-      setTimeout(() => {
-        letters.forEach(letter => { 
-          this.setRandomPosition(letter);
-        });
-
-        // Update the index of the current word and restart the animation
-        index = (index++) % words.length;
-        if (index === 0) {
-          setIsComplete(true);
-        } else {
-          setTimeout(this.showWords(), 1000);
+      const resolvePromise = () => {
+        if (index >= words.length) {
+          resolve(setIsComplete(true));
+          return;
         }
-      }, 5000);
-    }, 1000);
+      };
 
+      const animateWord = () => {
+        let word = words[index];
+        console.log("word", word);
+        if (setActualWord) setActualWord(word);
+        let letters = this.splitWord(word);
+
+        // Remove all letters from the words container
+        this.wordsContaner.innerHTML = '';
+        // Add all letters to the words container
+        letters.forEach(letter => this.wordsContaner.appendChild(letter));
+
+        // Update the text after 1 second
+        setTimeout(() => {
+
+          if (showAccertButtons) {
+            this.showAccertButtons();
+          }
+          let wordsContainerWidth = this.wordsContaner.offsetWidth;
+          letters.forEach((letter, i) => {
+            // set the final position of each letter and update its left and top properties
+            const left = (wordsContainerWidth / 2) - ((letters.length / 2) * letter.offsetWidth) + (i * letter.offsetWidth); // add space between letters
+            const top = (this.wordsContaner.offsetHeight / 2)-letter.offsetHeight +(letter.offsetHeight - letter.offsetHeight) / 2; // center the letter vertically
+            letter.style.left = `${left}px`;
+            letter.style.top = `${top}px`;
+          });
+
+          // Wait 5 seconds and then start the animation
+          setTimeout(() => {
+            letters.forEach(letter => {
+              this.setRandomPosition(letter);
+            });
+
+            index++;
+            resolvePromise();
+
+            // Update the index of the current word and restart the animation
+            animateWord();
+          }, 5000);
+        }, 1000);
+      };
+
+      animateWord();
+    });
   }
+
 
   showContinuePlay() {
     this.playContinueButton.style.display = 'block';
@@ -120,6 +138,10 @@ class PlayView {
 
   hideModalAlias() {
     this.modalAlias.style.display = "none";
+  }
+
+  showWordsContainer() {
+    this.wordsContaner.style.display = "block";
   }
 
 

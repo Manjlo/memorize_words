@@ -207,7 +207,7 @@
     position: relative;
 }
 /* Establece la posición de los elementos span como absoluta para poder moverlos */
-#id_words span {
+span {
     position: absolute;
     font-size: 6vw;
     background-color: #EECF86;
