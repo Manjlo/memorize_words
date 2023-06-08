@@ -22,21 +22,22 @@ class PlayView {
 
     this.yesButton.style.display = 'none';
     this.noButton.style.display = 'none';
-    this.outButton.style.display = 'flex';
+    this.outButton.style.display = 'none';
+    this.playerLabel.style.display = 'flex';
     this.playerLevel.style.display = 'flex';
     this.score.style.display = 'flex';
   }
 
   showPlayerLevel(level) {
-    this.playerLevel.textContent = level;
+    this.playerLevel.textContent = 'Nivel: ' + level;
   }
 
   showPlayerName(name) {
-    this.playerLabel.textContent = name;
+    this.playerLabel.textContent = 'Jugador: ' + name;
   }
 
   showScore(score) {
-    this.score.textContent = score;
+    this.score.textContent = 'Puntaje: ' + score;
   }
 
   //Set Info Text and Show Info Modal
@@ -60,7 +61,7 @@ class PlayView {
   }
 
   showOutButton() {
-    this.outButton.style.display = 'block';
+    this.outButton.style.display = 'flex';
   }
 
   // Set position of each letter in a random place inside the div
@@ -163,7 +164,7 @@ class PlayView {
   }
 
   showInfoContinueButton() {
-    this.infoButtonContinue.style.display = 'block';
+    this.infoButtonContinue.style.display = 'flex';
   }
 
   hideInfoContinueButton() {
@@ -171,8 +172,8 @@ class PlayView {
   }
 
   showChooseAcert() {
-    this.yesButton.style.display = 'block';
-    this.noButton.style.display = 'block';
+    this.yesButton.style.display = 'flex';
+    this.noButton.style.display = 'flex';
   }
 
   hideChooseAcert() {
