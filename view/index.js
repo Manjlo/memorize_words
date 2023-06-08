@@ -13,10 +13,29 @@ class PlayView {
     this.playNextButton = document.getElementById('id_next_button');
     this.modalAlias = document.getElementById('id_modalAlias');
     this.title = document.getElementById('id_title');
+    this.playerLabel = document.getElementById('id_playerLabel');
+    this.nameLabel = document.getElementById('label-name');
+    this.playerLevel = document.getElementById('id_playerLevel');
+    this.score = document.getElementById('id_score');
 
 
     this.yesButton.style.display = 'none';
     this.noButton.style.display = 'none';
+    this.outButton.style.display = 'block';
+    this.playerLevel.style.display = 'block';
+    this.score.style.display = 'block';
+  }
+
+  showPlayerLevel(level) {
+    this.playerLevel.innerHTML = level;
+  }
+
+  showPlayerName(name) {
+    this.nameLabel.innerHTML = name;
+  }
+
+  showScore(score) {
+    this.score.innerHTML = score;
   }
 
   //Set Info Text and Show Info Modal
@@ -38,6 +57,7 @@ class PlayView {
     element.style.left = `${left}px`;
     element.style.top = `${top}px`;
   }
+
 
   //Split words and return array of letters with random position in an span element
   splitWord(word) {
@@ -85,7 +105,7 @@ class PlayView {
           letters.forEach((letter, i) => {
             // set the final position of each letter and update its left and top properties
             const left = (wordsContainerWidth / 2) - ((letters.length / 2) * letter.offsetWidth) + (i * letter.offsetWidth); // add space between letters
-            const top = (this.wordsContaner.offsetHeight / 2)-letter.offsetHeight +(letter.offsetHeight - letter.offsetHeight) / 2; // center the letter vertically
+            const top = (this.wordsContaner.offsetHeight / 2) - letter.offsetHeight + (letter.offsetHeight - letter.offsetHeight) / 2; // center the letter vertically
             letter.style.left = `${left}px`;
             letter.style.top = `${top}px`;
           });
