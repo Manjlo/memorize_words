@@ -158,8 +158,8 @@ class PlayController {
 
   checkAnswerIfNo() {
     let acert = !this.wordsToMemorize.getWords().includes(this.actualWord);
-    if (acert) {
-      this.acertNumber += 1;
+    if (!acert) {
+      alert('Has fallado');
     }
     this.view.showScore(this.acertNumber);
     console.log(this.acertNumber);
