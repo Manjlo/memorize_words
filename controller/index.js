@@ -59,8 +59,8 @@ class PlayController {
       await this.showWordsToMemorize();
 
       if (this.isComplete) {
-        this.view.infoButtonContinue.addEventListener('click', this.questionsWords.bind(this))
-        this.view.showInfoContinueButton();
+        this.view.playNextButton.addEventListener('click', this.questionsWords.bind(this))
+        this.view.showNextContinueButton();
         this.view.hidePlayButton();
         this.setIsComplete(false);
       }
@@ -101,7 +101,7 @@ class PlayController {
         }
 
         this.wordsToMemorize = new Words(wordsToMemorize);
-        this.words = new Words(words);
+        this.words = new Words(words.sort(() => Math.random() - 0.5));
 
         resolve();
       } catch (error) {
@@ -133,8 +133,13 @@ class PlayController {
     }
   }
 
-  showNormalWords() {
-    this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+  async showNormalWords() {
+    try {
+      this.view.hideNextContinueButton();
+      await this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+    } catch (error) {
+      
+    }
   }
 
   async saveUser() {
@@ -152,17 +157,22 @@ class PlayController {
   }
 
   checkAnswerIfNo() {
-    let acert = !this.wordsToMemorize.includes(this.actualWord);
+    let acert = !this.wordsToMemorize.getWords().includes(this.actualWord);
     if (acert) {
       this.acertNumber += 1;
     }
+    this.view.showScore(this.acertNumber);
+    console.log(this.acertNumber);
+    this.view.hideChooseAcert();
   }
 
   checkAnswerIfYes() {
-    let acert = this.wordsToMemorize.includes(this.actualWord);
+    let acert = this.wordsToMemorize.getWords().includes(this.actualWord);
     if (acert) {
       this.acertNumber += 1;
     }
+    this.view.showScore(this.acertNumber);
+    this.view.hideChooseAcert();
   }
 
   checIfWin() {
@@ -175,11 +185,12 @@ class PlayController {
     }
   }
 
-  questionsWords() {
-    this.showNormalWords();
+  async questionsWords() {
+
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
-    this.showNormalWords();
+
+    await this.showNormalWords();
     if (isComplete) {
       this.checIfWin();
     }

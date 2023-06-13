@@ -4,6 +4,8 @@ class PlayView {
     this.aliasInput = document.getElementById('alias');
     this.playContinueButton = document.getElementById('id_continue');
     this.wordsContaner = document.getElementById('id_wordsContainer');
+    this.wordsDivContainer = document.getElementById('id_words')
+    this.chooseContainer = document.getElementById('id_choose')
     this.yesButton = document.getElementById('id_yes');
     this.noButton = document.getElementById('id_no');
     this.infoContainer = document.getElementById('id_info_modal');
@@ -21,11 +23,14 @@ class PlayView {
 
 
     this.yesButton.style.display = 'none';
+    this.chooseContainer.style.display = 'none'
     this.noButton.style.display = 'none';
     this.outButton.style.display = 'none';
     this.playerLabel.style.display = 'flex';
     this.playerLevel.style.display = 'flex';
+    this.playNextButton.style.display = 'none';
     this.score.style.display = 'flex';
+
   }
 
   showPlayerLevel(level) {
@@ -95,26 +100,25 @@ class PlayView {
 
       const animateWord = () => {
         let word = words[index];
-        console.log("word", word);
         if (setActualWord) setActualWord(word);
         let letters = this.splitWord(word);
 
         // Remove all letters from the words container
-        this.wordsContaner.innerHTML = '';
+        this.wordsDivContainer.innerHTML = '';
         // Add all letters to the words container
-        letters.forEach(letter => this.wordsContaner.appendChild(letter));
+        letters.forEach(letter => this.wordsDivContainer.appendChild(letter));
 
         // Update the text after 1 second
         setTimeout(() => {
 
           if (showAccertButtons) {
-            this.showAccertButtons();
+            this.showChooseAcert();
           }
-          let wordsContainerWidth = this.wordsContaner.offsetWidth;
+          let wordsContainerWidth = this.wordsDivContainer.offsetWidth;
           letters.forEach((letter, i) => {
             // set the final position of each letter and update its left and top properties
             const left = (wordsContainerWidth / 2) - ((letters.length / 2) * letter.offsetWidth) + (i * letter.offsetWidth); // add space between letters
-            const top = (this.wordsContaner.offsetHeight / 2) - letter.offsetHeight + (letter.offsetHeight - letter.offsetHeight) / 2; // center the letter vertically
+            const top = (this.wordsDivContainer.offsetHeight / 2) - letter.offsetHeight + (letter.offsetHeight - letter.offsetHeight) / 2; // center the letter vertically
             letter.style.left = `${left}px`;
             letter.style.top = `${top}px`;
           });
@@ -132,7 +136,7 @@ class PlayView {
 
               if (index === words.length) {
                 // If it's the last word, resolve the promise and set 'isComplete' to true
-                this.wordsContaner.innerHTML = '';
+                this.wordsDivContainer.innerHTML = '';
                 setIsComplete(true);
                 resolve();
               } else {
@@ -147,8 +151,6 @@ class PlayView {
       animateWord();
     });
   }
-
-
 
 
   showContinuePlay() {
@@ -171,9 +173,19 @@ class PlayView {
     this.infoButtonContinue.style.display = 'none';
   }
 
+  showNextContinueButton() {
+    this.playNextButton.style.display = 'block'
+  }
+
+  hideNextContinueButton() {
+    this.playNextButton.style.display = 'none'
+  }
+
   showChooseAcert() {
-    this.yesButton.style.display = 'flex';
-    this.noButton.style.display = 'flex';
+
+    this.chooseContainer.style.display = 'flex'
+    this.yesButton.style.display = 'block';
+    this.noButton.style.display = 'block';
   }
 
   hideChooseAcert() {
@@ -191,6 +203,11 @@ class PlayView {
 
   showWordsContainer() {
     this.wordsContaner.style.display = "block";
+    this.chooseContainer.style.display = 'flex'
+  }
+
+  hideWordsContainer() {
+    this.wordsContaner.style.display = "none";
   }
 
 

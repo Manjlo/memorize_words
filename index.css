@@ -35,6 +35,7 @@
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
+
 /*Definimos los parametros para el contenido del boton jugar*/
 #id_play {
     color: white;
@@ -105,7 +106,7 @@
     text-align: center;
 }
 /*Definimos los parametros para el boton*/
-.infoButton {
+.infoButton{
     position: absolute;
     width: 15vw;
     height: 5vw;
@@ -119,8 +120,31 @@
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
+/* */
+.next_button{
+    position: absolute;
+    width: 15vw;
+    height: 5vw;
+    top: 85%;
+    left: 41.9%;
+    background-color:  #DC8B19;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.8vw;
+    border-color: #DC8B19;
+    box-shadow: 3px 5px 5px #A85020;
+}
+}
 /*Definimos los parametros para el texto en el boton*/
 #id_infoButton {
+    color: white;
+    font-size: 3.9vw;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+}
+
+#id_next_button {
     color: white;
     font-size: 3.9vw;
     font-family: 'Volare Free', sans-serif;
@@ -217,6 +241,7 @@ span {
 /*Definimos los parametros que seguirá el div donde van los botones*/
 .choose{
     position: absolute;
+    display: flex;
     background-color: none;
     width: 100%;
     height: 30%;
@@ -340,4 +365,9 @@ span {
     color: #D9673B;
     font-family: 'Volare Free', sans-serif;
     font-size: 3vw;
+}
+
+#id_words{
+    width: 100%;
+    height: 100%;
 }
