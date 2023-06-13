@@ -206,4 +206,4 @@ class PlayController {
 
 
 
-new PlayController(new PlayView(), "hola")
+new PlayController()
