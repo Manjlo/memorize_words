@@ -120,13 +120,19 @@
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
+#id_infoButton {
+    color: white;
+    font-size: 3.9vw;
+    font-family: 'Volare Free', sans-serif;
+    text-align: center;
+}
 /* */
 .next_button{
     position: absolute;
-    width: 15vw;
+    width: 20vw;
     height: 5vw;
     top: 85%;
-    left: 41.9%;
+    left: 29%;
     background-color:  #DC8B19;
     justify-content: center;
     align-items: center;
@@ -135,15 +141,7 @@
     border-color: #DC8B19;
     box-shadow: 3px 5px 5px #A85020;
 }
-}
 /*Definimos los parametros para el texto en el boton*/
-#id_infoButton {
-    color: white;
-    font-size: 3.9vw;
-    font-family: 'Volare Free', sans-serif;
-    text-align: center;
-}
-
 #id_next_button {
     color: white;
     font-size: 3.9vw;
@@ -370,4 +368,10 @@ span {
 #id_words{
     width: 100%;
     height: 100%;
+}
+.correct{
+    display: none;
+}
+.error{
+    display: none;
 }
