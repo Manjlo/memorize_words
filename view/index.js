@@ -56,14 +56,15 @@ class PlayView {
     this.infoContainer.style.display = 'flex';
   }
   setTitle(text) {
+    this.title.textContent = ''
     this.title.textContent = text;
     this.title.style.display = 'flex';
   }
 
   //Hide Info Modal
   hideInfo() {
-    this.infoContainer.remove()
-    this.title.remove()
+    this.infoContainer.style.display = 'none';
+    this.title.style.display = 'none';
   }
   //Hide Info Button
   hideInfoButton() {

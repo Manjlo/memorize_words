@@ -31,7 +31,7 @@ class Level {
   }
 
   isWinThisLevel(numberAcerts) {
-    return numberAcerts >= this.acertsNumber;
+    return numberAcerts >= this.levelWords * this.acertsNumber/100;
   }
 
 }

@@ -46,6 +46,7 @@ class PlayController {
         this.showAlertError("Se te acabo el tiempo")
       }
       this.setCheckAcert(false);
+      this.actualWord = word;
     }
   }
 
@@ -73,6 +74,7 @@ class PlayController {
 
       if (this.isComplete) {
         this.view.playNextButton.addEventListener('click', this.questionsWords.bind(this))
+        this.view.setTitle("Estas listo para jugar?")
         this.view.showNextContinueButton();
         this.view.hidePlayButton();
         this.setIsComplete(false);
@@ -189,29 +191,31 @@ class PlayController {
   checkAnswerIfYes() {
     this.setCheckAcert(true)
     let acert = this.wordsToMemorize.getWords().includes(this.actualWord);
+    console.log(acert, this.actualWord)
     if (acert) {
       this.acertNumber += 1;
     } else {
       this.showAlertError('Te has equivocado');
-      alert('Te has equivocado');
     }
     this.view.showScore(this.acertNumber);
     this.view.hideChooseAcert();
   }
 
   checIfWin() {
+    console.log(this.level.isWinThisLevel(this.acertNumber), this.acertNumber)
     if (this.level.isWinThisLevel(this.acertNumber)) {
       alert('Has ganado');
       this.player.setLevel(this.player.getLevel() + 1);
       this.setUserToLocalStorage();
-      this.initGame();
     } else {
-      this.initGame();
+      alert('Has perdido');
     }
+    this.outGame();
   }
 
   async questionsWords() {
 
+    this.view.hideInfo()
     this.view.showScore(this.acertNumber);
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
