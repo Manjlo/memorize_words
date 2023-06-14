@@ -20,6 +20,8 @@ class PlayView {
     this.nameLabel = document.getElementById('label-name');
     this.playerLevel = document.getElementById('id_playerLevel');
     this.score = document.getElementById('id_score');
+    this.correctSound = document.getElementById('correctSound');
+    this.errorSound = document.getElementById('errorSound');
 
 
     this.yesButton.style.display = 'none';

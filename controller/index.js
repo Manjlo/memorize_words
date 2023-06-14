@@ -171,6 +171,7 @@ class PlayController {
   }
 
   showAlertError(alertString) {
+    this.view.errorSound.play();
     alert(alertString)
   }
 
@@ -178,6 +179,7 @@ class PlayController {
     this.setCheckAcert(true)
     let acert = !this.wordsToMemorize.getWords().includes(this.actualWord);
     if (acert) {
+      this.view.correctSound.play();
       this.acertNumber += 1;
     } else {
       this.showAlertError('Te has equivocado');
@@ -193,6 +195,8 @@ class PlayController {
     let acert = this.wordsToMemorize.getWords().includes(this.actualWord);
     console.log(acert, this.actualWord)
     if (acert) {
+
+      this.view.correctSound.play();
       this.acertNumber += 1;
     } else {
       this.showAlertError('Te has equivocado');
