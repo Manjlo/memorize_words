@@ -24,7 +24,9 @@ const CONFIG = {
     { level: 9, wordsToMemorize: 70, words: 140, time: 5, aciertos: 95 },
     { level: 10, wordsToMemorize: 100, words: 200, time: 5, aciertos: 100},
   ],
-  infoText: textos
+  infoText: textos,
+  timeToMemorize: 5,
+  timeToResponse: 7,
 
 }
 

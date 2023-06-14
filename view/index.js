@@ -29,7 +29,7 @@ class PlayView {
     this.playerLabel.style.display = 'flex';
     this.playerLevel.style.display = 'flex';
     this.playNextButton.style.display = 'none';
-    this.score.style.display = 'flex';
+    this.score.style.display = 'none';
 
   }
 
@@ -42,6 +42,7 @@ class PlayView {
   }
 
   showScore(score) {
+    this.score.style.display = 'flex';
     this.score.textContent = 'Puntaje: ' + score;
   }
 
@@ -53,6 +54,10 @@ class PlayView {
   showInfoText(text) {
     this.infoText.innerHTML = text;
     this.infoContainer.style.display = 'flex';
+  }
+  setTitle(text) {
+    this.title.textContent = text;
+    this.title.style.display = 'flex';
   }
 
   //Hide Info Modal
@@ -91,7 +96,7 @@ class PlayView {
     return leters;
   }
   //Show word in the words container
-  showWords(words, setActualWord, setIsComplete, showAccertButtons) {
+  showWords(words, time, setActualWord, setIsComplete, showAccertButtons) {
     this.hideInfoButton();
     this.showOutButton();
     return new Promise((resolve, reject) => {
@@ -100,7 +105,7 @@ class PlayView {
 
       const animateWord = () => {
         let word = words[index];
-        if (setActualWord) setActualWord(word);
+        if (showAccertButtons) setActualWord(word);
         let letters = this.splitWord(word);
 
         // Remove all letters from the words container
@@ -144,7 +149,7 @@ class PlayView {
                 animateWord();
               }
             }, 500); // Additional wait time before moving to the next word
-          }, 5000); // Animation time
+          }, time*1000); // Animation time
         }, 1000); // Initial wait time before animating the word
       };
 
@@ -208,6 +213,22 @@ class PlayView {
 
   hideWordsContainer() {
     this.wordsContaner.style.display = "none";
+  }
+
+  deleteAll() {
+    this.wordsContaner.style.display = "none";
+    this.chooseContainer.style.display = 'none'
+    this.playButton.style.display = 'none';
+    this.playContinueButton.style.display = 'none';
+    this.infoButtonContinue.style.display = 'none';
+    this.infoButton.style.display = 'none';
+  }
+
+  showPlayView() {
+    this.playButton.style.display = 'flex';
+    this.infoButton.style.display = 'flex';
+    this.playContinueButton.style.display = 'flex';
+    this.title.style.display = 'flex';
   }
 
 

@@ -14,11 +14,13 @@ class PlayController {
     this.actualWord = null;
     this.word = null;
     this.acertNumber = 0;
+    this.checkAcert = false;
     this.isComplete = false;
     this.indexInfo = 0;
     this.view.playButton.addEventListener('click', this.initGame.bind(this));
     this.view.playContinueButton.addEventListener('click', this.saveUser.bind(this));
     this.view.infoButton.addEventListener('click', this.showInfoModal.bind(this));
+    this.view.outButton.addEventListener("click", this.outGame.bind(this))
 
   }
   //Get User from Local Storage
@@ -37,7 +39,19 @@ class PlayController {
   }
 
   setActualWord(word) {
-    this.actualWord = word
+    if (this.actualWord === null) {
+      this.actualWord = word
+    } else {
+      if (!this.checkAcert) {
+        this.showAlertError("Se te acabo el tiempo")
+      }
+      this.setCheckAcert(false);
+    }
+  }
+
+
+  setCheckAcert(bool) {
+    this.checkAcert = bool;
   }
 
   setIsComplete(isComplete) {
@@ -50,12 +64,11 @@ class PlayController {
     this.getUserToLocalStorage();
     if (this.player) {
 
-      this.view.showPlayerName(`hola, ${this.player.nickname}`);
-      this.view.showScore(this.player.score);
+      this.view.showPlayerName(`${this.player.nickname}`);
       this.view.showPlayerLevel(this.player.actualLevel);
 
       await this.setWords();
-      
+
       await this.showWordsToMemorize();
 
       if (this.isComplete) {
@@ -74,7 +87,6 @@ class PlayController {
     this.view.showPlayerName(this.player.nickname);
     this.view.showScore(this.player.score);
   }
-
   async getWords(numberOfWordsToMemorize, numberOfWords) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -114,8 +126,8 @@ class PlayController {
   async setWords() {
     let levelConfig = CONFIG.levels.find(level => level.level === this.player.actualLevel)
     this.level = new Level(levelConfig.wordsToMemorize, levelConfig.words, levelConfig.level, levelConfig.aciertos);
-    try {    
-    await this.getWords(this.level.getWordsToMemorize(), this.level.getLevelWords());
+    try {
+      await this.getWords(this.level.getWordsToMemorize(), this.level.getLevelWords());
     } catch (error) {
       console.error('Error al cargar el archivo:', error);
     }
@@ -125,20 +137,20 @@ class PlayController {
     this.view.hidePlayButton();
     this.view.hideInfo()
     try {
-    await this.view.showWords(this.wordsToMemorize.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
-      
+      await this.view.showWords(this.wordsToMemorize.getWords(), CONFIG.timeToMemorize, this.setActualWord.bind(this), this.setIsComplete.bind(this), false);
+
     } catch (error) {
       console.error('Error', error);
-      
+
     }
   }
 
   async showNormalWords() {
     try {
       this.view.hideNextContinueButton();
-      await this.view.showWords(this.words.getWords(), this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
+      await this.view.showWords(this.words.getWords(), CONFIG.timeToResponse, this.setActualWord.bind(this), this.setIsComplete.bind(this), true);
     } catch (error) {
-      
+
     }
   }
 
@@ -156,20 +168,32 @@ class PlayController {
     }
   }
 
+  showAlertError(alertString) {
+    alert(alertString)
+  }
+
   checkAnswerIfNo() {
+    this.setCheckAcert(true)
     let acert = !this.wordsToMemorize.getWords().includes(this.actualWord);
-    if (!acert) {
-      alert('Has fallado');
+    if (acert) {
+      this.acertNumber += 1;
+    } else {
+      this.showAlertError('Te has equivocado');
     }
     this.view.showScore(this.acertNumber);
-    console.log(this.acertNumber);
     this.view.hideChooseAcert();
   }
 
+
+
   checkAnswerIfYes() {
+    this.setCheckAcert(true)
     let acert = this.wordsToMemorize.getWords().includes(this.actualWord);
     if (acert) {
       this.acertNumber += 1;
+    } else {
+      this.showAlertError('Te has equivocado');
+      alert('Te has equivocado');
     }
     this.view.showScore(this.acertNumber);
     this.view.hideChooseAcert();
@@ -177,6 +201,7 @@ class PlayController {
 
   checIfWin() {
     if (this.level.isWinThisLevel(this.acertNumber)) {
+      alert('Has ganado');
       this.player.setLevel(this.player.getLevel() + 1);
       this.setUserToLocalStorage();
       this.initGame();
@@ -187,17 +212,17 @@ class PlayController {
 
   async questionsWords() {
 
+    this.view.showScore(this.acertNumber);
     this.view.yesButton.addEventListener('click', this.checkAnswerIfYes.bind(this));
     this.view.noButton.addEventListener('click', this.checkAnswerIfNo.bind(this));
 
     await this.showNormalWords();
-    if (isComplete) {
+    if (this.isComplete) {
       this.checIfWin();
     }
   }
 
   showInfoModal() {
-    console.log("holass")
     this.view.showInfoModal();
 
     this.view.showInfoText(CONFIG.infoText[this.indexInfo]);
@@ -212,6 +237,9 @@ class PlayController {
     }
     this.view.showInfoText(CONFIG.infoText[this.indexInfo]);
 
+  }
+  outGame = () => {
+    document.location.reload();
   }
 }
 
