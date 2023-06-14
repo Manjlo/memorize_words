@@ -162,11 +162,15 @@ class PlayController {
     this.player = new User(alias);
     localStorage.setItem('user', JSON.stringify(this.player));
     this.view.hideModalAlias();
+    this.view.showPlayerName(`${this.player.nickname}`);
+    this.view.showPlayerLevel(this.player.actualLevel);
     await this.setWords();
     this.showWordsToMemorize();
     if (this.isComplete) {
-      this.playButton.addEventListener('click', this.questionsWords.bind(this))
-      this.view.showPlayButton();
+      this.view.playNextButton.addEventListener('click', this.questionsWords.bind(this))
+      this.view.setTitle("Estas listo para jugar?")
+      this.view.showNextContinueButton();
+      this.view.hidePlayButton();
       this.setIsComplete(false);
     }
   }
