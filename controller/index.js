@@ -106,7 +106,7 @@ class PlayController {
         // Separar las palabras en un array
         const newWords = text.split(',');
 
-        for (let i = 0; i < numberOfWords; i++) {
+        for (let i = 0; i < numberOfWords.sort(() => Math.random() - 0.5); i++) {
           let word = newWords[i];
           words.push(word);
           if (i < numberOfWordsToMemorize) {
@@ -114,7 +114,7 @@ class PlayController {
           }
         }
 
-        this.wordsToMemorize = new Words(wordsToMemorize);
+        this.wordsToMemorize = new Words(wordsToMemorize.sort(() => Math.random() - 0.5));
         this.words = new Words(words.sort(() => Math.random() - 0.5));
 
         resolve();
