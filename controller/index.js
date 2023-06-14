@@ -105,6 +105,7 @@ class PlayController {
 
         // Separar las palabras en un array
         const newWords = text.split(',');
+        newWords.sort(() => Math.random() - 0.5);
 
         for (let i = 0; i < numberOfWords; i++) {
           let word = newWords[i];
